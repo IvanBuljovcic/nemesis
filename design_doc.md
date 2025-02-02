@@ -1,8 +1,8 @@
 # Nemesis
 
 ## Entities
-- (Room)[#Room]
-- (Player)[#Player]
+- [Room](###Room)
+- [Player](###Player)
 - Intruder
 
 ### Room
