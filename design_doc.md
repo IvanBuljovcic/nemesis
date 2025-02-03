@@ -1,10 +1,10 @@
 # Nemesis
 
 ## Entities
-- (Room)[#Room]
-- (Player)[#Player]
-- (Corridor)[#Corridor]
-- (Intruder)[#Intruder]
+- [Room](#Room)
+- [Player](#Player)
+- [Corridor](#Corridor)
+- [Intruder](#Intruder)
 
 ### Room
 Properties:
