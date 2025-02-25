@@ -5,6 +5,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --room-unexplored: rgb(45, 10, 10);
+  --room-explored: rgb(125, 123, 123);
+  --room-fire: firebrick;
+
+  --weapon: rgb(86, 26, 26);
+  --utility: rgb(181, 165, 46);
+  --health: rgb(46, 181, 55);
+  --item: rgb(46, 98, 181);
 }
 
 @media (prefers-color-scheme: dark) {

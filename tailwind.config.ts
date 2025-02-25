@@ -12,6 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "cyan",
+
+        room: {
+          unexplored: "var(--room-unexplored)",
+          explored: "var(--room-explored)",
+          onFire: "var(--room-fire)",
+        },
       },
     },
   },
