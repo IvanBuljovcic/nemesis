@@ -1,32 +1,77 @@
-import { describe, test } from "vitest";
+import Room, { RoomProps } from "@/components/room";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, test } from "vitest";
+import "@testing-library/jest-dom";
 
 describe("Room", () => {
   describe("Not explored", () => {
-    test("no data is displayed", () => {});
+    // No data is displayed
+    // `not-explored` class is included
+    test("no data is displayed", () => {
+      const roomProps: RoomProps = {
+        explored: false,
+        items: 0,
+        malfunctioning: false,
+        onFire: false,
+        title: "Loading bay",
+      };
 
-    test("not on fire", () => {});
+      render(<Room {...roomProps} />);
 
-    test("not malufunctioning", () => {});
+      const wrapperElement = screen.getByTestId("wrapper-unexplored");
 
-    test("does not have occupants", () => {});
+      expect(wrapperElement).toBeDefined();
+      expect(wrapperElement.childNodes.length).toBe(0);
+      expect(wrapperElement.innerHTML).toBe("");
+
+      expect(wrapperElement.classList.contains("bg-room-unexplored")).toBeTruthy();
+    });
   });
 
   describe("Explored", () => {
     describe("Data showing", () => {
-      test("name is correct and displayed", () => {});
+      const defaultRoomProps: RoomProps = {
+        explored: true,
+        items: 0,
+        malfunctioning: false,
+        onFire: false,
+        title: "Loading bay",
+      };
 
-      test("number of items is correct", () => {});
+      afterEach(() => cleanup());
 
-      test("computer availability is correct", () => {});
+      test("name is correct and displayed", () => {
+        render(<Room {...defaultRoomProps} />);
 
-      test("fire indicator", () => {});
+        expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(defaultRoomProps.title);
+      });
 
-      test("malufunction indicator", () => {});
+      // Fire class applied
+      // Showing fire indicator
+      test("fire indicators", () => {
+        render(<Room {...defaultRoomProps} onFire={true} />);
 
-      test("occupants", () => {});
+        const wrapperElement = screen.getByTestId("wrapper-explored");
+
+        expect(wrapperElement.classList.contains("bg-room-onFire")).toBeTruthy();
+        expect(screen.getByTestId("fire-indicator")).not.toBeNull();
+      });
+
+      // Showing malfunction indicator
+      test("malfunctioning indicator showing", () => {
+        render(<Room {...defaultRoomProps} malfunctioning={true} />);
+
+        expect(screen.getByTestId("malfunctioning-indicator")).not.toBeNull();
+      });
+
+      test.skip("number of items is correct", () => {});
+
+      test.skip("computer availability is correct", () => {});
+
+      test.skip("occupants", () => {});
     });
 
-    describe("Functionality", () => {
+    describe.skip("Functionality", () => {
       test("cannot use room action or computer if malufunctioning", () => {});
     });
   });
